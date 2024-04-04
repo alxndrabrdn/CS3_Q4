@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Table</title>
+</head>
+<body>
+<div id="table"></div>
+<script>
+    function multiplication() {
+        var n = prompt("enter a value for number of rows(2-10)");
+        var m = prompt("enter another value  for number of column(2-10)");
+
+        if (n >= 2 && n <= 10 && m >= 2 && m <= 10) {
+            var table = "<table>";
+            var row = 1;
+            while (row <= n) {
+                table += "<tr>";
+                var column = 1;
+                while (column <= m) {
+                    table += "<td>" + (row * column) + "</td>";
+                    column++;
+                }
+                table += "</tr>";
+                row++;
+            }
+            table += "</table>";
+            document.getElementById("table").innerHTML = table;
+        }
+    }
+
+    multiplication();
+</script>
+</body>
+</html>
