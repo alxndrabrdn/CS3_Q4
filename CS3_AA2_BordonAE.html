@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html> 
+<head>
+  <title>Sign-up Sheet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:#ECEBE6;
+      margin: 0;
+      padding: 0;
+    }
+    .inputInfo {
+      max-width: 700px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    }
+    fieldset {
+      border: none;
+    }
+    legend {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+	  color: #4E684B;
+    }
+	label {
+      color: #4E684B; 
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+	  color: #4E684B;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .submit-button,
+    .reset-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #4E684B;
+      color: #fff;
+      cursor: pointer;
+    }
+    .submit-button:hover,
+    .reset-button:hover {
+      background-color: #89A686;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+	  color: #4E684B;
+    }
+	div {
+	color: #4E684B; 
+	}
+  </style>
+</head>
+<body>
+  <div class="inputInfo">
+    <form onsubmit="return printSubmit();" id="info">
+      <fieldset>
+        <legend>Sign Up Information</legend>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" onblur="validateInput(this)">
+        
+        <label for="username">Preferred Username:</label>
+        <input type="text" id="username" name="username" onblur="validateInput(this)">
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" onblur="validateInput(this)">
+          <option value="" disabled selected>Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="prefer not to mention">Prefer not to mention</option>
+        </select>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" onblur="validateInput(this)">
+        
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" onblur="validateInput(this)">
+        
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" onblur="validateInput(this)"></textarea>
+        
+        <label for="interest">What are your interests?</label>
+        <textarea id="interest" name="interest" rows="4" onblur="validateInput(this)"></textarea> 
+      </fieldset>
+      <button type="submit" class="submit-button">Submit</button>
+      <button type="reset" class="reset-button" onclick="resetAll()">Reset</button>
+    </form>
+    <div class="output" id="output"></div>
+  <script>
+    function validateInput(input) {
+      if (input.value === "") {
+        input.style.border = "2px solid red";
+      } else {
+        input.style.border = "2px solid green";
+      }
+    }
+
+    function printSubmit() {
+        var name = document.getElementById("name").value;
+        var username = document.getElementById("username").value;
+        var gender = document.getElementById("gender").value;
+        var password = document.getElementById("password").value;
+        var email = document.getElementById("email").value;
+        var address = document.getElementById("address").value;
+        var interest = document.getElementById("interest").value;
+
+        var outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+            <h3>User Information</h3>
+            <p>Name: ${name}</p>
+            <p>Username: ${username}</p>
+            <p>Gender: ${gender}</p>
+            <p>Email: ${email}</p>
+            <p>Address: ${address}</p>
+            <p>Interests:${interest}</p>
+        `;
+        return false;
+    }
+	function resetAll() {
+      document.getElementById("info").reset();
+      document.getElementById("output").innerHTML = ""; 
+    }
+  </script>
+</body>
+</html>
